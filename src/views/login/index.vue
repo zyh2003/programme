@@ -38,8 +38,8 @@ export default {
   data() {
     return {
       loginForm: {
-        username: '',
-        password: ''
+        username: 'admin',
+        password: 'admin'
       },
       rules: {
         username: [
@@ -68,6 +68,10 @@ export default {
         const data = await getLogin(this.loginForm)
         console.log(data)
         this.$router.push('/')
+        this.$notify({
+          message: '登录成功',
+          type: 'success'
+        })
       } catch (error) {}
     }
   }
