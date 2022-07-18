@@ -22,7 +22,9 @@
             ></el-input>
           </el-form-item>
           <el-form-item>
-            <el-button class="login-btn" type="primary">登录</el-button>
+            <el-button class="login-btn" @click="clickLogin" type="primary"
+              >登录</el-button
+            >
           </el-form-item>
         </el-form>
       </div>
@@ -31,6 +33,7 @@
 </template>
 
 <script>
+import { getLogin } from '@/api/user'
 export default {
   data() {
     return {
@@ -56,12 +59,18 @@ export default {
       }
     }
   },
-  methods: {},
-  created() {},
-  mounted() {},
-  components: {},
-  computed: {},
-  watch: {}
+  methods: {
+    /**
+     * 点击登录
+     */
+    async clickLogin() {
+      try {
+        const data = await getLogin(this.loginForm)
+        console.log(data)
+        this.$router.push('/')
+      } catch (error) {}
+    }
+  }
 }
 </script>
 
