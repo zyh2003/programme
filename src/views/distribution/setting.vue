@@ -1,7 +1,5 @@
 <template>
-  <div>
-    <router-view></router-view>
-  </div>
+  <div>分销设置</div>
 </template>
 
 <script>

@@ -5,4 +5,10 @@ import request from '../utils/request'
  * @param {*} model
  * @returns
  */
-export const getLogin = (model) => request.post('/admin/login', model)
+export const getLogin = (model) => request.post('/login', model)
+/**
+ * 用户信息
+ * @param {*} model
+ * @returns
+ */
+export const getInfo = (model) => request.post('/getinfo', model)

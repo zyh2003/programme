@@ -1,12 +1,12 @@
 <template>
-  <div>
+  <div class="content">
     <el-container class="home">
       <el-header class="home-header">
-        <AppHeader></AppHeader>
+        <AppHeader :info="info"></AppHeader>
       </el-header>
       <el-container>
         <el-aside width="200px" class="home-aside">
-          <AppAside></AppAside>
+          <AppAside :menus="menus"></AppAside>
         </el-aside>
         <el-main class="home-main">
           <AppMain></AppMain>
@@ -20,12 +20,23 @@
 import AppAside from './aside'
 import AppHeader from './header'
 import AppMain from './main'
+import { getInfo } from '../api/user'
 export default {
   data() {
-    return {}
+    return {
+      info: '',
+      menus: ''
+    }
   },
   methods: {},
-  created() {},
+  created() {
+    getInfo().then((res) => {
+      // console.log(res.data.data)
+      this.info = res.data.data
+      this.menus = res.data.data.menus
+      // console.log(res.data.data.menus);
+    })
+  },
   mounted() {},
   components: {
     AppAside,
@@ -43,9 +54,9 @@ export default {
   .home-header {
     background-color: #6366f1;
   }
-  .home-aside {
-    background-color: pink;
-  }
+  // .home-aside {
+  //   background-color: pink;
+  // }
   .home-main {
     background-color: teal;
   }

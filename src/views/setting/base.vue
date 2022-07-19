@@ -1,7 +1,5 @@
 <template>
-  <div>
-    <router-view></router-view>
-  </div>
+  <div>基础设置</div>
 </template>
 
 <script>

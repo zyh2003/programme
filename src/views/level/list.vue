@@ -1,7 +1,5 @@
 <template>
-  <div>
-    <router-view></router-view>
-  </div>
+  <div>会员等级</div>
 </template>
 
 <script>

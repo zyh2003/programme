@@ -66,7 +66,9 @@ export default {
     async clickLogin() {
       try {
         const data = await getLogin(this.loginForm)
-        console.log(data)
+        // console.log(data)
+        localStorage.setItem('token', data.data.data.token)
+        // console.log(data.data.data.token);
         this.$router.push('/')
         this.$notify({
           message: '登录成功',

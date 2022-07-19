@@ -9,14 +9,18 @@
         <i class="el-icon-s-fold"></i>
         <!-- <i class="el-icon-s-unfold"></i> -->
       </span>
-      <i class="el-icon-refresh" @click="refreshbtn"></i>
+      <el-tooltip class="item" effect="dark" content="刷新" placement="bottom">
+        <i class="el-icon-refresh" @click="refreshbtn"></i>
+      </el-tooltip>
     </div>
     <div class="header-right">
-      <span class="el-icon-full-screen" @click="fullscreen"> </span>
-      <el-avatar class="avater" :size="30" :src="circleUrl"></el-avatar>
+      <el-tooltip class="item" effect="dark" content="全屏" placement="bottom">
+        <span class="el-icon-full-screen" @click="fullscreen"> </span>
+      </el-tooltip>
+      <el-avatar class="avater" :size="30" :src="info.avatar"></el-avatar>
       <el-dropdown @command="handleCommand">
         <span class="el-dropdown-link">
-          admin <i class="el-icon-arrow-down el-icon--right"></i>
+          {{ info.username }} <i class="el-icon-arrow-down el-icon--right"></i>
         </span>
         <el-dropdown-menu slot="dropdown">
           <el-dropdown-item>修改密码</el-dropdown-item>
@@ -29,10 +33,9 @@
 
 <script>
 export default {
+  props: ['info'],
   data() {
-    return {
-      circleUrl: ''
-    }
+    return {}
   },
   methods: {
     /**
