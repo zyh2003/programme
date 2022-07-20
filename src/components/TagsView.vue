@@ -1,7 +1,5 @@
 <template>
-  <div class="main">
-    <router-view></router-view>
-  </div>
+  <div class="tagsView"></div>
 </template>
 
 <script>
@@ -19,7 +17,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-// .main{
-//   background-color: rgba(247, 245, 245, 0.726);
-// }
+.tagsView{
+  height: 50px;
+  background-color: skyblue;
+  margin-bottom: 30px;
+}
 </style>

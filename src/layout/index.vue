@@ -5,10 +5,11 @@
         <AppHeader :info="info"></AppHeader>
       </el-header>
       <el-container>
-        <el-aside width="200px" class="home-aside">
+        <el-aside width="250px" class="home-aside">
           <AppAside :menus="menus"></AppAside>
         </el-aside>
         <el-main class="home-main">
+          <tags-view></tags-view>
           <AppMain></AppMain>
         </el-main>
       </el-container>
@@ -21,6 +22,7 @@ import AppAside from './aside'
 import AppHeader from './header'
 import AppMain from './main'
 import { getInfo } from '../api/user'
+import TagsView from '../components/TagsView.vue'
 export default {
   data() {
     return {
@@ -41,7 +43,8 @@ export default {
   components: {
     AppAside,
     AppHeader,
-    AppMain
+    AppMain,
+    TagsView
   },
   computed: {},
   watch: {}
@@ -51,14 +54,9 @@ export default {
 <style lang="scss" scoped>
 .home {
   height: 100vh;
+  background-color: #fff;
   .home-header {
     background-color: #6366f1;
-  }
-  // .home-aside {
-  //   background-color: pink;
-  // }
-  .home-main {
-    background-color: teal;
   }
 }
 </style>

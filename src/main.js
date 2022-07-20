@@ -7,6 +7,10 @@ import 'element-ui/lib/theme-chalk/index.css'
 import './styles/reset.css'
 // 全屏显示
 import fullscreen from 'vue-fullscreen'
+// 动态数字
+import VueAnimateNumber from 'vue-animate-number'
+Vue.use(VueAnimateNumber)
+
 Vue.use(fullscreen)
 Vue.config.productionTip = false
 Vue.use(ElementUI)
