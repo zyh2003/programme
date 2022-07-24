@@ -213,7 +213,7 @@ export default {
       this.panels = res.data.data.panels
     })
     getStatistics2().then((res) => {
-      console.log(res.data.data)
+      // console.log(res.data.data)
       this.list = res.data.data
     })
     getStatistics3().then((res) => {})

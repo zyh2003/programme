@@ -36,13 +36,13 @@
                 >
                   <el-form-item label="商品分类" prop="value">
                     <el-select size="mini" v-model="value" placeholder="请选择">
-                      <!-- <el-option
-                        v-for="item in options"
-                        :key="item.value"
-                        :label="item.label"
-                        :value="item.value"
+                      <el-option
+                        v-for="item in category"
+                        :key="item.id"
+                        :label="item.name"
+                        :value="item.id"
                       >
-                      </el-option> -->
+                      </el-option>
                     </el-select>
                   </el-form-item>
                 </el-form>
@@ -83,18 +83,36 @@
               @selection-change="handleSelectionChange"
             >
               <el-table-column type="selection" width="55"> </el-table-column>
-              <el-table-column label="日期" width="120">
-                <template slot-scope="scope">{{ scope.row.date }}</template>
+
+              <el-table-column prop="desc" label="商品" width="300">
+                <template v-slot="scope">
+                  <div>
+                    <el-avatar
+                      shape="square"
+                      :size="50"
+                      :src="scope.row.cover"
+                    ></el-avatar>
+                  </div>
+                  <div>
+                    <h1>{{ scope.row.title }}</h1>
+                    <p>
+                      ￥{{ scope.row.min_price
+                      }}<span>￥{{ scope.row.min_oprice }}</span>
+                    </p>
+                    <p>分类：{{ scope.row.category.name }}</p>
+                    <p>创建时间：{{ scope.row.update_time }}</p>
+                  </div>
+                </template>
               </el-table-column>
-              <el-table-column prop="name" label="姓名" width="120">
+              <el-table-column prop="sale_count" label="实际销量" width="70">
               </el-table-column>
-              <el-table-column
-                prop="address"
-                label="地址"
-                show-overflow-tooltip
-              >
+              <el-table-column prop="status" label="商品状态" width="100">
               </el-table-column>
-              <el-table-column fixed="right" label="操作" width="100">
+              <el-table-column prop="ischeck" label="审核状态" width="120">
+              </el-table-column>
+              <el-table-column prop="stock" label="总库存" width="90">
+              </el-table-column>
+              <el-table-column fixed="right" label="操作" width="200">
                 <template slot-scope="scope">
                   <el-button
                     @click="handleClick(scope.row)"
@@ -114,6 +132,7 @@
 </template>
 
 <script>
+import { getGoods, getCategory } from '../../api/goods'
 export default {
   data() {
     return {
@@ -146,16 +165,29 @@ export default {
       activeName: 'all',
       input: '',
       value: '',
-      tableData: ''
+      // 列表数据
+      tableData: [],
+      category: ''
     }
   },
   methods: {
-    handleClick(tab, event) {
-      console.log(tab, event)
+    /**
+     * 商品管理列表数据
+     */
+    async handleClick(tab, event) {
+      // console.log(tab, event)
+      const data = await getGoods(tab._props.name)
+      this.tableData = data.data.data.list
+      console.log()
     },
     handleSelectionChange() {}
   },
-  created() {},
+  created() {
+    getCategory().then((res) => {
+      // console.log(res)
+      this.category = res.data.data
+    })
+  },
   mounted() {},
   components: {},
   computed: {},
@@ -177,6 +209,25 @@ export default {
     .goods-table-CRUD {
       display: flex;
       justify-content: space-between;
+    }
+  }
+  ::deep .el-table {
+    .cell {
+      display: flex;
+      justify-content: space-between;
+      div{
+        &:nth-of-type(2){
+          p{
+            &:nth-of-type(1){
+              // font-size: ;
+              color: red;
+              span{
+                color: #ccc;
+              }
+            }
+          }
+        }
+      }
     }
   }
 }
